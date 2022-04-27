@@ -5,6 +5,7 @@ Stack:
  - Spring Data R2DBC
  - PostgreSQL
  - Docker
+ - Flyway Migrations
 
 
 ## Tests
