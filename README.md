@@ -6,6 +6,7 @@ Stack:
  - PostgreSQL
  - Docker
  - Flyway Migrations
+ - Keycloak
 
 
 ## Tests
