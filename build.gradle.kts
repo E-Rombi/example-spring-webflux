@@ -24,6 +24,8 @@ dependencies {
 	implementation("org.jetbrains.kotlinx:kotlinx-coroutines-reactor")
 	implementation("org.springframework.boot:spring-boot-starter-data-r2dbc")
 	implementation("org.flywaydb:flyway-core")
+	implementation("org.springframework.boot:spring-boot-starter-security")
+	implementation("org.keycloak:keycloak-spring-boot-starter:18.0.0")
 	runtimeOnly("io.r2dbc:r2dbc-postgresql")
 	runtimeOnly("org.postgresql:postgresql")
 	testImplementation("org.springframework.boot:spring-boot-starter-test")

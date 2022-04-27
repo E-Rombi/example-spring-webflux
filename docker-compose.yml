@@ -8,9 +8,44 @@ services:
     environment:
       POSTGRES_PASSWORD: password
     ports:
-      - "5432:5432"
+      - "5433:5432"
     volumes:
       - database-volume:/var/lib/postgresql/data
+    networks:
+      - postgres-compose-network
+
+  postgres:
+    image: 'postgres:alpine'
+    volumes:
+      - postgres-volume:/var/lib/postgresql/data
+    ports:
+      - "5432:5432"
+    environment:
+      POSTGRES_USER: keycloak
+      POSTGRES_PASSWORD: password
+      POSTGRES_DB: keycloak
+      POSTGRES_HOST: postgres
+    networks:
+      - postgres-compose-network
+
+  keycloak:
+    image: jboss/keycloak
+    ports:
+      - "18443:8443"
+      - "18080:8080"
+      - "19990:9990"
+    depends_on:
+      - postgres
+    environment:
+      DB_VENDOR: postgres
+      DB_ADDR: postgres
+      DB_PORT: 5432
+      DB_DATABASE: keycloak
+      BD_USER: keycloak
+      DB_PASSWORD: password
+      KEYCLOAK_USER: admin
+      KEYCLOAK_PASSWORD: Pa55w0rd
+      POSTGRES_PORT_5432_TCP_ADDR: 127.0.0.1
     networks:
       - postgres-compose-network
 
@@ -28,6 +63,7 @@ services:
 
 volumes:
   database-volume:
+  postgres-volume:
 
 networks:
   postgres-compose-network:

@@ -14,6 +14,7 @@ import reactor.core.publisher.Flux
 import reactor.core.publisher.Mono
 import reactor.core.scheduler.Schedulers
 import java.util.concurrent.Executors
+import javax.annotation.security.RolesAllowed
 
 @RestController
 @RequestMapping("/hello")
@@ -24,6 +25,7 @@ class GreetingController(
     private val DB_SCHEDULER = Schedulers.fromExecutor(Executors.newFixedThreadPool(8, THREAD_FACTORY))
     private val logger = LoggerFactory.getLogger(this::class.java)
 
+    @RolesAllowed("user")
     @PostMapping
     fun registerGreeting(@RequestBody request: NewGreetingRequest) : Mono<NewGreetingResponse> {
         return Mono.fromCallable {
@@ -50,10 +52,12 @@ class GreetingController(
             .subscribeOn(DB_SCHEDULER)
     }
 
+    @RolesAllowed("admin")
     @GetMapping
-    fun findAllGreetings(@RequestParam page: Int,
-              @RequestParam size: Int,
-              @RequestParam orderBy: String
+    fun findAllGreetings(
+        @RequestParam page: Int,
+        @RequestParam size: Int,
+        @RequestParam orderBy: String
     ): Flux<Greeting> {
         val pageable = PageRequest.of(page, size, Sort.by(orderBy))
 

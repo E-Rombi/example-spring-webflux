@@ -1,9 +1,21 @@
 spring:
     flyway:
         password: password
-        url: jdbc:postgresql://localhost:5432/db_greeting
+        url: jdbc:postgresql://localhost:5433/db_greeting
         user: postgres
     r2dbc:
         password: password
-        url: r2dbc:postgresql://localhost:5432/db_greeting
+        url: r2dbc:postgresql://localhost:5433/db_greeting
         username: postgres
+    main:
+        allow-circular-references: true
+
+keycloak:
+    realm: demo
+    auth-server-url: http://localhost:18080/auth
+    ssl-required: external
+    resource: enviroment
+    credentials:
+        secret: wFmLHUPbGyUWiDTAkO5IdVxvLkCyivZE
+    use-resource-role-mappings: true
+    bearer-only: true
