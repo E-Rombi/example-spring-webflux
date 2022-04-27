@@ -11,7 +11,7 @@ Stack:
 
 ## Tests
 
-I accomplish stress test during 30 seconds on endpoint GET /hello without authentication e authorization.
+I accomplish stress test during 30 seconds on endpoint GET /hello without authentication and authorization.
 
 Here're the results!
 
