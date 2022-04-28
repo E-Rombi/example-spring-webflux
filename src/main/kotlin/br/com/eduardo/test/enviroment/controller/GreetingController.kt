@@ -5,7 +5,6 @@ import br.com.eduardo.test.enviroment.model.NewGreetingRequest
 import br.com.eduardo.test.enviroment.model.NewGreetingResponse
 import br.com.eduardo.test.enviroment.repository.GreetingRepository
 import org.slf4j.LoggerFactory
-import org.springframework.cache.annotation.Cacheable
 import org.springframework.data.domain.PageRequest
 import org.springframework.data.domain.Sort
 import org.springframework.scheduling.concurrent.CustomizableThreadFactory
